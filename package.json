@@ -1,0 +1,35 @@
+{
+  "name": "se2",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "lint": "eslint src",
+    "dev": "ts-node-dev --respawn src/index.ts",
+    "prebuild": "rmdir /s /q build",
+    "build": "tsc",
+    "prestart": "npm run build",
+    "start": "node dir/index.js",
+    "test": "jest"
+  },
+  "keywords": [],
+  "author": "Hussein",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^9.31.0",
+    "@types/jest": "^30.0.0",
+    "eslint": "^9.31.0",
+    "globals": "^16.3.0",
+    "jest": "^30.0.4",
+    "ts-jest": "^29.4.0",
+    "ts-node": "^10.9.2",
+    "ts-node-dev": "^2.0.0",
+    "typescript": "^5.8.3",
+    "typescript-eslint": "^8.36.0"
+  },
+  "dependencies": {
+    "dotenv": "^17.2.0",
+    "fast-xml-parser": "^5.2.5",
+    "winston": "^3.17.0"
+  }
+}
