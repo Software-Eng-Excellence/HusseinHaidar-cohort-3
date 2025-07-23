@@ -128,3 +128,4 @@ export class Cake implements Item {
         return this.packagingType;
     }
 }
+export default Cake;
