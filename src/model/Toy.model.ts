@@ -10,7 +10,7 @@ export enum BatteryRequired {
     No = "No"
 }
 
-class Toy implements Item {
+export class Toy implements Item {
     private type: string;
     private ageGroup: AgeGroup;
     private brand: string;

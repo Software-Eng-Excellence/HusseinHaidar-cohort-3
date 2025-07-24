@@ -6,9 +6,9 @@ import { Item, ItemCategory } from "./Item.model";
 //     Arabic = "Arabic",
 // }
 
-type Language = "Arabic"|"English" |"French"
+export type Language = "Arabic"|"English" |"French"
 
-class Book implements Item {
+export class Book implements Item {
     private bookTitle: string;
     private author: string;
     private genre: string;

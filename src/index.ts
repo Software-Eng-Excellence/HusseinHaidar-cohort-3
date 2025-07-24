@@ -42,6 +42,7 @@ import { parseCSV } from './util/parsers/csvParser'
 import { parseXML } from "./util/parsers/xmlParser";
 import { parseJSON } from "./util/parsers/jsonParser";
 
+
 // CSV File
 const csvFile = path.resolve(__dirname, './data/cake orders.csv');
 
@@ -76,7 +77,7 @@ async function XMLParser() {
 // XMLParser();
 
 // Json File
-const JSONfile = path.resolve(__dirname,'./data/book orders.json');
+const JSONfile = path.resolve(__dirname, './data/book orders.json');
 
 // Parsing Json
 async function JSONParser() {
@@ -88,4 +89,75 @@ async function JSONParser() {
         logger.error(error)
     }
 }
-JSONParser()
+// JSONParser();
+
+// Building Models
+import { CakeBuilder } from "./model/builders/Cake.builder";
+import { Flavor, Size, Type } from "../src/model/Cake.model";
+import { BookBuilder } from "./model/builders/Book.builder";
+import { ToyBuilder } from "./model/builders/Toy.builder";
+import { AgeGroup, BatteryRequired } from "./model/Toy.model";
+
+async function buildingCake() {
+    const cakeBuilder = new CakeBuilder();
+
+    const cake = cakeBuilder
+        .setType(Type.Birthday)
+        .setAllergies("allergies")
+        .setCustomMessage("We Love you")
+        .setDecorationColor("Yellow")
+        .setDecorationType("decorationtype")
+        .setFilling("filling")
+        .setFlavor(Flavor.Mango)
+        .setFrostingFlavor("frostingflavor")
+        .setFrostingType("frostingtype")
+        .setLayers("layer")
+        .setPackagingType("packagingtype")
+        .setShape("square")
+        .setSize(Size.Large)
+        .setSpecialIngredients("specialingreidents")
+        .build();
+
+    console.log(cake);
+}
+
+buildingCake();
+
+
+async function buildingBook() {
+    const bookBuilder = new BookBuilder();
+
+    const book= bookBuilder
+    .setAuthor("author")
+    .setBookTitle("title")
+    .setFormat("format")
+    .setGenre("genre")
+    .setLanguage("English")
+    .setPackaging("packaging")
+    .setPublisher("publisher")
+    .setSpecialEdition("specialEdition")
+    .build()
+
+
+    console.log(book);
+}
+
+buildingBook();
+
+async function buildingToy() {
+    const toyBuilder= new ToyBuilder();
+
+    const toy= toyBuilder
+    .setAgegroup(AgeGroup.Teen)
+    .setBatteryRequired(BatteryRequired.Yes)
+    .setBrand("brand")
+    .setMaterial("material")
+    .setType("type")
+    .setEducational("educational")
+    .build()
+
+
+    console.log(toy);
+}
+
+buildingToy();
