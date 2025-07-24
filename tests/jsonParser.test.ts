@@ -8,7 +8,7 @@ describe('JSON Parser', () => {
   const jsonEmpty = path.join(testDir, 'jsonEmpty.json');
   const nonjson = path.join(testDir, 'nonjson.csv');
 
-  beforeEach(() => {
+  beforeAll(() => {
     if (!fs.existsSync(testDir)) {
       fs.mkdirSync(testDir, { recursive: true });
     }
@@ -38,7 +38,7 @@ describe('JSON Parser', () => {
     fs.writeFileSync(nonjson, `id,item,price\n1,Sponge,15\n2,Chocolate,20`);
   });
 
-  afterEach(() => {
+  afterAll(() => {
     [jsonData, jsonEmpty, nonjson].forEach((file) => {
       if (fs.existsSync(file)) {
         fs.unlinkSync(file);

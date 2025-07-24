@@ -9,7 +9,7 @@ describe('XML Parser', () => {
   const xmlEmpty = path.join(testDir, 'xmlEmpty.xml');
   const nonXml = path.join(testDir, 'nonXml.csv');
 
-  beforeEach(() => {
+  beforeAll(() => {
     if (!fs.existsSync(testDir)) {
       fs.mkdirSync(testDir, { recursive: true });
     }
@@ -37,7 +37,7 @@ describe('XML Parser', () => {
     fs.writeFileSync(nonXml, `id,item,price\n1,Sponge,15\n2,Chocolate,20`);
   });
 
-  afterEach(() => {
+  afterAll(() => {
     [xmlData, xmlEmpty, nonXml].forEach((file) => {
       if (fs.existsSync(file)) fs.unlinkSync(file);
     });
