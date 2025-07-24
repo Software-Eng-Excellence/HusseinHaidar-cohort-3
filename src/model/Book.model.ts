@@ -1,11 +1,5 @@
 import { Item, ItemCategory } from "./Item.model";
 
-// export enum Language {
-//     English = "English",
-//     French = "French",
-//     Arabic = "Arabic",
-// }
-
 export type Language = "Arabic"|"English" |"French"
 
 export class Book implements Item {
