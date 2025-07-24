@@ -10,7 +10,7 @@ describe('CSV Parser', () => {
     const nonCsv = path.join(testDir, 'noncsv.xml');
 
 
-    beforeEach(() => {
+    beforeAll(() => {
         if (!fs.existsSync(testDir)) {
             fs.mkdirSync(testDir, { recursive: true });
         }
@@ -26,7 +26,7 @@ describe('CSV Parser', () => {
         fs.writeFileSync(nonCsv, `<orders><order id="1">Sample</order></orders>`);
     });
 
-    afterEach(() => {
+    afterAll(() => {
         [csvData, csvEmpty, nonCsv].forEach((file) => {
             if (fs.existsSync(file)) fs.unlinkSync(file);
         });
