@@ -1,20 +1,24 @@
-import { AgeGroup, BatteryRequired, Toy } from "../Toy.model";
+import { Toy } from "../Toy.model";
 import logger from "../../util/logger";
 
 export class ToyBuilder {
     private type!: string;
-    private ageGroup!: AgeGroup;
+    private ageGroup!: string;
     private brand!: string;
     private material!: string;
-    private batteryRequired!: BatteryRequired;
+    private batteryRequired!: string;
     private educational!: string;
+
+    static create():ToyBuilder{
+        return new ToyBuilder()
+    }
 
     setType(type: string): ToyBuilder {
         this.type = type;
         return this;
     }
 
-    setAgegroup(ageGroup: AgeGroup): ToyBuilder {
+    setAgegroup(ageGroup: string): ToyBuilder {
         this.ageGroup = ageGroup;
         return this;
     }
@@ -29,7 +33,7 @@ export class ToyBuilder {
         return this;
     }
 
-    setBatteryRequired(batteryRequired: BatteryRequired): ToyBuilder {
+    setBatteryRequired(batteryRequired: string): ToyBuilder {
         this.batteryRequired = batteryRequired;
         return this;
     }

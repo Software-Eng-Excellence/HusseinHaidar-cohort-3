@@ -1,27 +1,25 @@
 import { CakeBuilder } from "../src/model/builders/Cake.builder";
-import { Flavor, Size, Type } from "../src/model/Cake.model";
 
 describe("Cake Builder Testing", () => {
 
     it("Build the cake successfully", () => {
         // Arrange
-        const cakeBuilder = new CakeBuilder();
 
         //Act
-        const cake = cakeBuilder
-            .setType(Type.Birthday)
+        const cake = CakeBuilder.newBuilder()
+            .setType("Birthday")
             .setAllergies("allergies")
             .setCustomMessage("We Love you")
             .setDecorationColor("Yellow")
             .setDecorationType("decorationtype")
             .setFilling("filling")
-            .setFlavor(Flavor.Mango)
+            .setFlavor("Mango")
             .setFrostingFlavor("frostingflavor")
             .setFrostingType("frostingtype")
-            .setLayers("layer")
+            .setLayers(5)
             .setPackagingType("packagingtype")
             .setShape("square")
-            .setSize(Size.Large)
+            .setSize(1)
             .setSpecialIngredients("specialingreidents")
             .build();
 
@@ -35,10 +33,10 @@ describe("Cake Builder Testing", () => {
             "flavor": "Mango",
             "frostingFlavor": "frostingflavor",
             "frostingType": "frostingtype",
-            "layers": "layer",
+            "layers": 5,
             "packagingType": "packagingtype",
             "shape": "square",
-            "size": "Large",
+            "size": 1,
             "specialIngredients": "specialingreidents",
             "type": "Birthday",
         })
@@ -55,10 +53,10 @@ describe("Cake Builder Testing", () => {
             const cake = cakeBuilder
                 .setFrostingFlavor("frostingflavor")
                 .setFrostingType("frostingtype")
-                .setLayers("layer")
+                .setLayers(4)
                 .setPackagingType("packagingtype")
                 .setShape("square")
-                .setSize(Size.Large)
+                .setSize(2)
                 .setSpecialIngredients("specialingreidents")
                 .build();
         }

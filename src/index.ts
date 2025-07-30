@@ -18,23 +18,23 @@ const newItem = "Sponge";
 const newPrice = 22;
 
 orderMang.addOrder(newItem, newPrice);
-logger.info("Orders after adding a new order:", orderMang.getOrder());
+// logger.info("Orders after adding a new order:", orderMang.getOrder());
 
 // Calculate Total Revenue directly
-logger.info("Total Revenue:" + orderMang.getTotalRevenue());
+// logger.info("Total Revenue:" + orderMang.getTotalRevenue());
 
 // Calculate Average Buy Power directly
-logger.info("Average Buy Power:" + orderMang.getBuyPower());
+// logger.info("Average Buy Power:" + orderMang.getBuyPower());
 
 // Fetching an order directly
 const fetchId = 2;
 const fetchedOrder = orderMang.fetchOrder(fetchId);
-logger.info("Order with ID 2:", fetchedOrder);
+// logger.info("Order with ID 2:", fetchedOrder);
 
 // Attempt to fetch a non-existent order
 const nonExistentId = 10;
 const nonExistentOrder = orderMang.fetchOrder(nonExistentId);
-logger.info("Order with ID 10 (non-existent): " + nonExistentOrder);
+// logger.info("Order with ID 10 (non-existent): " + nonExistentOrder);
 
 
 import path from 'path';
@@ -93,35 +93,37 @@ async function JSONParser() {
 
 // Building Models
 import { CakeBuilder } from "./model/builders/Cake.builder";
-import { Flavor, Size, Type } from "../src/model/Cake.model";
 import { BookBuilder } from "./model/builders/Book.builder";
 import { ToyBuilder } from "./model/builders/Toy.builder";
-import { AgeGroup, BatteryRequired } from "./model/Toy.model";
+import { CSVCakeMapper } from "./mappers/Cake.mapper";
+import { CSVOrderMapper, JSONOrderMapper, XMLOrderMapper } from "./mappers/Order.mapper";
+import { JSONBookMapper } from "./mappers/Book.mapper";
+import { XMLToyMapper } from "./mappers/toy.mapper";
 
 async function buildingCake() {
     const cakeBuilder = new CakeBuilder();
 
     const cake = cakeBuilder
-        .setType(Type.Birthday)
+        .setType("Type.Birthday")
         .setAllergies("allergies")
         .setCustomMessage("We Love you")
         .setDecorationColor("Yellow")
         .setDecorationType("decorationtype")
         .setFilling("filling")
-        .setFlavor(Flavor.Mango)
+        .setFlavor("Flavor.Mango")
         .setFrostingFlavor("frostingflavor")
         .setFrostingType("frostingtype")
-        .setLayers("layer")
+        .setLayers(5)
         .setPackagingType("packagingtype")
         .setShape("square")
-        .setSize(Size.Large)
+        .setSize(5)
         .setSpecialIngredients("specialingreidents")
         .build();
 
     console.log(cake);
 }
 
-buildingCake();
+// buildingCake();
 
 
 async function buildingBook() {
@@ -142,14 +144,14 @@ async function buildingBook() {
     console.log(book);
 }
 
-buildingBook();
+// buildingBook();
 
 async function buildingToy() {
     const toyBuilder= new ToyBuilder();
 
     const toy= toyBuilder
-    .setAgegroup(AgeGroup.Teen)
-    .setBatteryRequired(BatteryRequired.Yes)
+    .setAgegroup("Teen")
+    .setBatteryRequired("Yes")
     .setBrand("brand")
     .setMaterial("material")
     .setType("type")
@@ -160,4 +162,36 @@ async function buildingToy() {
     console.log(toy);
 }
 
-buildingToy();
+// buildingToy();
+
+//Mappers
+async function mappingCsv() {
+    const data = await parseCSV("src/data/cake orders.csv"); //csv => string[][]
+    const cakeMapper = new CSVCakeMapper(); // create object inject it in Order Mapper to know what is the item
+    const orderMapper = new CSVOrderMapper(cakeMapper); // each order contains cake, so we create instance of csvordermapper taking cakemapper
+    const orders = data.map(r=>orderMapper.map(r)); //  csv => Order object
+    console.log(orders);
+}
+
+// mappingCsv()
+
+async function mappingJson() {
+    const data = await parseJSON("src/data/book orders.json");
+    const bookMapper = new JSONBookMapper(); 
+    const orderMapper = new JSONOrderMapper(bookMapper); 
+    const orders = data.map((o:{ [key: string]: string }) => orderMapper.map(o)); 
+    console.log(orders);
+}
+
+// mappingJson()
+
+async function mappingXml()
+{
+    const data = await parseXML("src/data/toy orders.xml");
+    const bookMapper = new XMLToyMapper(); 
+    const orderMapper = new XMLOrderMapper(bookMapper); 
+    const orders = data.data.row.map((o:{ [key: string]: string }) => orderMapper.map(o)); 
+    console.log(orders);   
+}
+
+// mappingXml()

@@ -1,31 +1,13 @@
-import { Item, ItemCategory } from "./Item.model";
+import { IItem, ItemCategory } from "./IItem";
 
 
-export enum Type {
-    Birthday = "Birthday",
-    Wedding = "Wedding",
-    Anniversary = "Anniversary",
-}
+export class Cake implements IItem {
 
-export enum Flavor {
-    Vanilla = "Vanilla",
-    Chocolate = "Chocolate",
-    Mango = "Mango",
-}
-
-export enum Size {
-    Small = "Small",
-    Medium = "Medium",
-    Large = "Large",
-}
-
-export class Cake implements Item {
-
-    private type: Type;
-    private flavor: Flavor;
+    private type: string;
+    private flavor: string;
     private filling: string;
-    private size: Size;
-    private layers: string;
+    private size: number;
+    private layers: number;
     private frostingType: string;
     private frostingFlavor: string;
     private decorationType: string;
@@ -37,11 +19,11 @@ export class Cake implements Item {
     private packagingType: string;
 
     constructor(
-        type: Type,
-        flavor: Flavor,
+        type: string,
+        flavor: string,
         filling: string,
-        size: Size,
-        layers: string,
+        size: number,
+        layers: number,
         frostingType: string,
         frostingFlavor: string,
         decorationType: string,
@@ -72,11 +54,11 @@ export class Cake implements Item {
         return ItemCategory.CAKE;
     }
 
-    public getType(): Type {
+    public getType(): string {
         return this.type;
     }
 
-    public getFlavor(): Flavor {
+    public getFlavor(): string {
         return this.flavor;
     }
 
@@ -84,11 +66,11 @@ export class Cake implements Item {
         return this.filling;
     }
 
-    public getSize(): Size {
+    public getSize(): number{
         return this.size;
     }
 
-    public getLayers(): string {
+    public getLayers(): number {
         return this.layers;
     }
 

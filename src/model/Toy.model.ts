@@ -1,29 +1,21 @@
-import { Item, ItemCategory } from "./Item.model";
+import { IItem, ItemCategory } from "./IItem";
 
-export enum AgeGroup {
-    Kids = "5-12",
-    Teen = "12-18",
-}
 
-export enum BatteryRequired {
-    Yes = "Yes",
-    No = "No"
-}
 
-export class Toy implements Item {
+export class Toy implements IItem {
     private type: string;
-    private ageGroup: AgeGroup;
+    private ageGroup: string;
     private brand: string;
     private material: string;
-    private batteryRequired: BatteryRequired;
+    private batteryRequired: string;
     private educational: string;
 
     constructor(
         type: string,
-        ageGroup: AgeGroup,
+        ageGroup: string,
         brand: string,
         material: string,
-        batteryRequired: BatteryRequired,
+        batteryRequired: string,
         educational: string
     ) {
         this.type = type;
@@ -42,7 +34,7 @@ export class Toy implements Item {
         return this.type;
     }
 
-    public getAgeGroup(): AgeGroup {
+    public getAgeGroup(): string {
         return this.ageGroup;
     }
 
@@ -54,7 +46,7 @@ export class Toy implements Item {
         return this.material;
     }
 
-    public getBatteryRequired(): BatteryRequired {
+    public getBatteryRequired(): string {
         return this.batteryRequired;
     }
 
