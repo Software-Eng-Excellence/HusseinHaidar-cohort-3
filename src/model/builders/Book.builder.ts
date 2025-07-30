@@ -1,16 +1,19 @@
 import logger from "../../util/logger";
-import { Book, Language } from "../Book.model";
+import { Book } from "../Book.model";
 
 export class BookBuilder {
     private bookTitle!: string;
     private author!: string;
     private genre!: string;
     private format!: string;
-    private language!: Language;
+    private language!: string;
     private publisher!: string;
     private specialEdition!: string;
     private packaging!: string;
 
+    static create(): BookBuilder{
+        return new BookBuilder();
+    }
     setBookTitle(bookTitle: string): BookBuilder {
         this.bookTitle = bookTitle;
         return this;
@@ -31,7 +34,7 @@ export class BookBuilder {
         return this;
     }
 
-    setLanguage(language: Language): BookBuilder {
+    setLanguage(language: string): BookBuilder {
         this.language = language;
         return this;
     }

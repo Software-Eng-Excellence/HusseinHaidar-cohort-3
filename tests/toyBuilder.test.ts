@@ -1,5 +1,4 @@
 import { ToyBuilder } from "../src/model/builders/Toy.builder";
-import { AgeGroup, BatteryRequired } from "../src/model/Toy.model";
 
 describe("Toy Builder Testing", () => {
 
@@ -9,8 +8,8 @@ describe("Toy Builder Testing", () => {
 
         // Act
         const toy = toyBuilder
-            .setAgegroup(AgeGroup.Teen)
-            .setBatteryRequired(BatteryRequired.Yes)
+            .setAgegroup("Teen")
+            .setBatteryRequired("Yes")
             .setBrand("brand")
             .setMaterial("material")
             .setType("type")
@@ -19,7 +18,7 @@ describe("Toy Builder Testing", () => {
 
         // Assert
         expect(toy).toEqual({
-            "ageGroup": "12-18",
+            "ageGroup": "Teen",
             "batteryRequired": "Yes",
             "brand": "brand",
             "educational": "educational",
@@ -38,8 +37,8 @@ describe("Toy Builder Testing", () => {
         // Act
         try {
             const toy = toyBuilder
-                .setAgegroup(AgeGroup.Teen)
-                .setBatteryRequired(BatteryRequired.Yes)
+                .setAgegroup("Teen")
+                .setBatteryRequired("Yes")
                 .setBrand("brand")
                 .build();
         }
